@@ -12,6 +12,9 @@ let editElement;
 let editing = false;
 let editID = '';
 // ****** EVENT LISTENERS **********
+//window on load saved items in localStorage
+window.addEventListener('load', setItems);
+
 groceryForm.addEventListener('submit', addItem);
 
 //clearBtn
@@ -25,33 +28,10 @@ function addItem(e) {
 
 		//conditions
 		if (value && !editing) {
-		const itemContainer = document.createElement('div');
-		itemContainer.classList.add('item-container');
-		let attr = document.createAttribute('data-id');
-		attr.value = id;
-		itemContainer.setAttributeNode(attr);
-		
-		 itemContainer.insertAdjacentHTML('beforeend', `<p>${value}</p>
-    						<div class="buttons">
-    								<button data-edit-btn type="button" class="edit-btn">
-              		 <i class="fas fa-edit"></i>
-              </button>
-              <!-- delete btn -->
-              <button data-trash-btn type="button" class="delete-btn">
-                <i class="fas fa-trash"></i>
-              </button>
-          	 </div>`);
-              
-   	groceryList.appendChild(itemContainer);
-   	
-   	//action buttons
-   	const trashBtn = itemContainer.querySelector('[data-trash-btn]');
-   	trashBtn.addEventListener('click', deleteItem);
 			
-			//edit btn
-		 	const editBtn = itemContainer.querySelector('[data-edit-btn]');
-			editBtn.addEventListener('click', editItem);
-
+			//add Items
+			createListItems(id, value);
+						
    	//show success message
 			displayMessage('success', 'Item added to list');	
 			
@@ -165,3 +145,42 @@ function getLocalStorage() {
 		return localStorage.getItem('list') ? JSON.parse(localStorage.getItem('list')) : [];
 }
 // ****** SETUP ITEMS **********
+function setItems() {
+		const items = getLocalStorage();
+		if (items.length > 0) {
+				items.forEach(item => {
+						createListItems(item.id, item.value);
+				})
+		clearBtn.classList.add('added');
+		}
+}
+
+function createListItems(id, value) {
+		const itemContainer = document.createElement('div');
+		itemContainer.classList.add('item-container');
+		let attr = document.createAttribute('data-id');
+		attr.value = id;
+		itemContainer.setAttributeNode(attr);
+		
+		 itemContainer.insertAdjacentHTML('beforeend', `<p>${value}</p>
+    						<div class="buttons">
+    								<button data-edit-btn type="button" class="edit-btn">
+              		 <i class="fas fa-edit"></i>
+              </button>
+              <!-- delete btn -->
+              <button data-trash-btn type="button" class="delete-btn">
+                <i class="fas fa-trash"></i>
+              </button>
+          	 </div>`);
+              
+   	groceryList.appendChild(itemContainer);
+   	
+   	//action buttons
+   	const trashBtn = itemContainer.querySelector('[data-trash-btn]');
+   	trashBtn.addEventListener('click', deleteItem);
+			
+			//edit btn
+		 	const editBtn = itemContainer.querySelector('[data-edit-btn]');
+			editBtn.addEventListener('click', editItem);
+
+}
