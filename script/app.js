@@ -37,11 +37,11 @@ function addItem(e) {
 			
   		clearBtn.classList.add('added');
     
+   //add To local storage
+			addToLocalStorage(id,value);
+    
     //set back to default
 				setBackToDefault();
-    
-    //add To local storage
-			addToLocalStorage(id,value);
 			
 		} else if (value && editing) {
 				editElement.textContent = value;
@@ -63,9 +63,8 @@ function deleteItem(e) {
 		if (groceryList.children.length === 0) {
 				clearBtn.classList.remove('added');
 		}
-		
-		setBackToDefault();
 		removeFromLocalStorage(id);
+		setBackToDefault();
 }
 
 //edit Item 
@@ -121,11 +120,10 @@ function addToLocalStorage(id, value) {
 
 function removeFromLocalStorage(id) {
 		let items = getLocalStorage();
-		items.forEach(item => {
+		items = items.filter(item => {
 				if (item.id !== id) {
 						return item;
 				}
-		localStorage.removeItem(id);
 		});
 		localStorage.setItem('list', JSON.stringify(items));
 }
