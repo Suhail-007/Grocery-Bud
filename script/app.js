@@ -22,163 +22,162 @@ clearBtn.addEventListener('click', clearItems);
 
 // ****** FUNCTIONS **********
 function addItem(e) {
-		e.preventDefault();
-		const value = groceryInput.value;
-		const id = new Date().getTime().toString();
+  e.preventDefault();
+  const value = groceryInput.value;
+  const id = new Date().getTime().toString();
 
-		//conditions
-		if (value && !editing) {
-			
-			//add Items
-			createListItems(id, value);
-						
-   	//show success message
-			displayMessage('success', 'Item added to list');	
-			
-  		clearBtn.classList.add('added');
-    
-   //add To local storage
-			addToLocalStorage(id,value);
-    
+  //conditions
+  if (value && !editing) {
+
+    //add Items
+    createListItems(id, value);
+
+    //show success message
+    displayMessage('success', 'Item added to list');
+
+    clearBtn.classList.add('added');
+
+    //add To local storage
+    addToLocalStorage(id, value);
+
     //set back to default
-				setBackToDefault();
-			
-		} else if (value && editing) {
-				editElement.textContent = value;
-				displayMessage('success', 'Item Edited');
-				editLocalStorage(editID, value);
-				setBackToDefault();
-		} else {
-				displayMessage('danger', 'Can\'t add the empty value');
-		}
+    setBackToDefault();
+
+  } else if (value && editing) {
+    editElement.textContent = value;
+    displayMessage('success', 'Item Edited');
+    editLocalStorage(editID, value);
+    setBackToDefault();
+  } else {
+    displayMessage('danger', 'Can\'t add the empty value');
+  }
 }
 
 //delete item
 function deleteItem(e) {
-		const element = e.currentTarget.closest('.item-container');
-		const id = element.dataset.id;
+  const element = e.currentTarget.closest('.item-container');
+  const id = element.dataset.id;
 
-	 groceryList.removeChild(element);
-		displayMessage('danger', 'Item Removed');
-		if (groceryList.children.length === 0) {
-				clearBtn.classList.remove('added');
-		}
-		removeFromLocalStorage(id);
-		setBackToDefault();
+  groceryList.removeChild(element);
+  displayMessage('danger', 'Item Removed');
+  if (groceryList.children.length === 0) {
+    clearBtn.classList.remove('added');
+  }
+  removeFromLocalStorage(id);
+  setBackToDefault();
 }
 
 //edit Item 
 function editItem(e) {
-		const element = e.currentTarget.closest('.item-container');
-		const id = element.dataset.id;
-		editElement = e.currentTarget.parentElement.previousElementSibling;
+  const element = e.currentTarget.closest('.item-container');
+  const id = element.dataset.id;
+  editElement = e.currentTarget.parentElement.previousElementSibling;
 
-	 groceryInput.value = editElement.innerHTML;
-	 addBtn.textContent = 'EDIT';
-	 editing = true;
-	 editID = element.dataset.id;
+  groceryInput.value = editElement.innerHTML;
+  addBtn.textContent = 'EDIT';
+  editing = true;
+  editID = element.dataset.id;
 }
 
 //display message alert/success
 function displayMessage(value, message) {
-		const messageElem = document.querySelector('[data-action-message]');
-		messageElem.textContent = message;
-		messageElem.classList.add(value);
-		setTimeout(function() {
-				messageElem.classList.remove(value);
-		}, 700);
+  const messageElem = document.querySelector('[data-action-message]');
+  messageElem.textContent = message;
+  messageElem.classList.add(value);
+  setTimeout(function() {
+    messageElem.classList.remove(value);
+  }, 700);
 }
 
 //Set back to default
 function setBackToDefault() {
-		groceryInput.value = '';
- 		editing = false;
-	 editID = '';
-	 addBtn.textContent = 'Add Item'; 
+  groceryInput.value = '';
+  editing = false;
+  editID = '';
+  addBtn.textContent = 'Add Item';
 }
 
 //clearitems
 function clearItems() {
-		const items = document.querySelectorAll('.item-container');
-		items.forEach(item => {
-			if (items.length > 0) groceryList.removeChild(item);
-		});
-		displayMessage('danger', 'Items Removed');
-		clearBtn.classList.remove('added');
-		localStorage.clear('list');
-		setBackToDefault();
+  const items = document.querySelectorAll('.item-container');
+  items.forEach(item => {
+    if (items.length > 0) groceryList.removeChild(item);
+  });
+  displayMessage('danger', 'Items Removed');
+  clearBtn.classList.remove('added');
+  localStorage.clear('list');
+  setBackToDefault();
 }
 
 // ****** LOCAL STORAGE **********
 //add to local storage
 function addToLocalStorage(id, value) {
-		const grocery = {id,value};
-		const items = getLocalStorage();
-		items.push(grocery);
-		localStorage.setItem('list', JSON.stringify(items));
+  const grocery = { id, value };
+  const items = getLocalStorage();
+  items.push(grocery);
+  localStorage.setItem('list', JSON.stringify(items));
 }
 
 function removeFromLocalStorage(id) {
-		let items = getLocalStorage();
-		items = items.filter(item => {
-				if (item.id !== id) {
-						return item;
-				}
-		});
-		localStorage.setItem('list', JSON.stringify(items));
+  let items = getLocalStorage();
+  items = items.filter(item => {
+    if (item.id !== id) {
+      return item;
+    }
+  });
+  localStorage.setItem('list', JSON.stringify(items));
 }
 
 function editLocalStorage(id, value) {
-		let items = getLocalStorage();
-		items.forEach(item => {
-				if (item.id === id) {
-						item.value = value;
-				}
-				return item;
-		});
-		localStorage.setItem('list', JSON.stringify(items));
+  let items = getLocalStorage();
+  items.forEach(item => {
+    if (item.id === id) {
+      item.value = value;
+    }
+    return item;
+  });
+  localStorage.setItem('list', JSON.stringify(items));
 }
 
 function getLocalStorage() {
-		return localStorage.getItem('list') ? JSON.parse(localStorage.getItem('list')) : [];
+  return localStorage.getItem('list') ? JSON.parse(localStorage.getItem('list')) : [];
 }
 // ****** SETUP ITEMS **********
 function setItems() {
-		const items = getLocalStorage();
-		if (items.length > 0) {
-				items.forEach(item => {
-						createListItems(item.id, item.value);
-				})
-		clearBtn.classList.add('added');
-		}
+  const items = getLocalStorage();
+  if (items.length > 0) {
+    items.forEach(item => {
+      createListItems(item.id, item.value);
+    })
+    clearBtn.classList.add('added');
+  }
 }
 
 function createListItems(id, value) {
-		const itemContainer = document.createElement('div');
-		itemContainer.classList.add('item-container');
-		let attr = document.createAttribute('data-id');
-		attr.value = id;
-		itemContainer.setAttributeNode(attr);
-		
-		 itemContainer.insertAdjacentHTML('beforeend', `<p>${value}</p>
-    						<div class="buttons">
-    								<button data-edit-btn type="button" class="edit-btn">
-              		 <i class="fas fa-edit"></i>
-              </button>
-              <!-- delete btn -->
-              <button data-trash-btn type="button" class="delete-btn">
-                <i class="fas fa-trash"></i>
-              </button>
-          	 </div>`);
-              
-   	groceryList.appendChild(itemContainer);
-   	
-   	//action buttons
-   	const trashBtn = itemContainer.querySelector('[data-trash-btn]');
-   	trashBtn.addEventListener('click', deleteItem);
-			
-			//edit btn
-		 	const editBtn = itemContainer.querySelector('[data-edit-btn]');
-			editBtn.addEventListener('click', editItem);
+  const itemContainer = document.createElement('div');
+  itemContainer.classList.add('item-container');
+  let attr = document.createAttribute('data-id');
+  attr.value = id;
+  itemContainer.setAttributeNode(attr);
+
+  itemContainer.insertAdjacentHTML('beforeend', `
+    <p>${value}</p>
+    <div class="buttons">
+    	<button data-edit-btn type="button" class="edit-btn">
+      <i class="fas fa-edit"></i></button>
+      
+      <!-- delete btn -->
+      <button data-trash-btn type="button" class="delete-btn"><i class="fas fa-trash"></i> </button>
+    </div>`);
+
+  groceryList.appendChild(itemContainer);
+
+  //action buttons
+  const trashBtn = itemContainer.querySelector('[data-trash-btn]');
+  trashBtn.addEventListener('click', deleteItem);
+
+  //edit btn
+  const editBtn = itemContainer.querySelector('[data-edit-btn]');
+  editBtn.addEventListener('click', editItem);
 
 }

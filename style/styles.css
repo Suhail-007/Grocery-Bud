@@ -1,261 +1,261 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
 
 :root {
-		--success: #bde3aa;
-		--alert: #ffb5aa;
-		--btn-bg: #bfd5ff;
-		--btn-bg-dark: #80acff;
-		--clr-grey-10: hsl(210, 36%, 96%);
+  --success: #bde3aa;
+  --alert: #ffb5aa;
+  --btn-bg: #bfd5ff;
+  --btn-bg-dark: #80acff;
+  --clr-grey-10: hsl(210, 36%, 96%);
 }
 
 
 *,
 *::before,
 *::after {
-		box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-		font-family: 'Montserrat', sans-serif;
-		display: grid;
-		place-items: center;
-		background: var(--clr-grey-10);
+  font-family: 'Montserrat', sans-serif;
+  display: grid;
+  place-items: center;
+  background: var(--clr-grey-10);
 }
 
 button,
 button:hover {
-		cursor: pointer;
+  cursor: pointer;
 }
 
 section {
-		box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2);
-		border-radius: 0.5rem;
-		padding: 1rem;
-		margin-top: 5rem;
-		background: white;
-		width: 90%;		
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-top: 5rem;
+  background: white;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .action-message {
-		font-size: clamp(0.8rem, 3vw, 1.5rem);
-		letter-spacing: 1px;
-		width: 100%;
-		text-align: center;
-		text-transform: capitalize;
-		border-radius: 5px;
-		padding: 0.2rem 0;
-		opacity: 0;
-		visibility: hidden;
-		pointer-events: none;
-		transition: all 500ms ease-in-out;
+  font-size: clamp(0.8rem, 3vw, 1.5rem);
+  letter-spacing: 1px;
+  width: 100%;
+  text-align: center;
+  text-transform: capitalize;
+  border-radius: 5px;
+  padding: 0.2rem 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 500ms ease-in-out;
 }
 
 .action-message.success {
-		background: var(--success);
-		opacity: 1;
-		visibility: visible;
+  background: var(--success);
+  opacity: 1;
+  visibility: visible;
 }
 
 .action-message.danger {
-		background: var(--alert);
-		opacity: 1;
-		visibility: visible;
+  background: var(--alert);
+  opacity: 1;
+  visibility: visible;
 }
 
 .grocery-form {
-		margin-bottom: 3rem;
-		display: grid;
-		place-items: center;
+  margin-bottom: 3rem;
+  display: grid;
+  place-items: center;
 }
 
-.grocery-form > div {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+.grocery-form>div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.grocery-form > div > div {
-		margin-top: 1rem;
+.grocery-form>div>div {
+  margin-top: 1rem;
 }
 
 h4 {
-		margin: 0;
-		font-size: clamp(1.1rem, 3vw, 1.4rem);
+  margin: 0;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
 }
 
 .grocery-input {
-		border: none;
-		border-right: none;	
-		border-radius: 5px 0 0 5px;
-		background: #ebebeb;
-		font-size: clamp(0.9rem, 3vw, 1.3rem);
-		font-family: 'Montserrat', sans-serif;
-		outline: none;
-		padding: 0.3rem 0.5rem;
+  border: none;
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  background: #ebebeb;
+  font-size: clamp(0.9rem, 3vw, 1.3rem);
+  font-family: 'Montserrat', sans-serif;
+  outline: none;
+  padding: 0.3rem 0.5rem;
 }
 
 .add-item-btn {
-		border: none;
-		border-radius: 0 5px 5px 0;
-		background-color: var(--btn-bg);
-		color: black;
-		font-size: clamp(0.9rem, 3vw, 1.3rem);
-		outline: none;
-		min-width: 5rem;
-		padding: 0.3rem;
-		transition: color 500ms ease-in-out,
-												background-color 300ms ease-in-out;
-		text-transform: capitalize;
-		user-select: none;
-		letter-spacing: 1px;
-		white-space: nowrap;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  background-color: var(--btn-bg);
+  color: black;
+  font-size: clamp(0.9rem, 3vw, 1.3rem);
+  outline: none;
+  min-width: 5rem;
+  padding: 0.3rem;
+  transition: color 500ms ease-in-out,
+    background-color 300ms ease-in-out;
+  text-transform: capitalize;
+  user-select: none;
+  letter-spacing: 1px;
+  white-space: nowrap;
 }
 
 .add-item-btn:hover,
 .add-item-btn:focus {
-		background-color: var(--btn-bg-dark);
-		color: white;
+  background-color: var(--btn-bg-dark);
+  color: white;
 }
 
 .list-container {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		align-content: center;
-		gap: 0.1rem;
-		width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  gap: 0.1rem;
+  width: 90%;
 }
 
 .item-container {
-		display: flex;
-		justify-content: space-between;
-		align-content: center;
-		padding: 0.5rem;
-		animation: visible 500ms forwards;
-		transition: background 300ms ease-in-out;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  padding: 0.5rem;
+  animation: visible 500ms forwards;
+  transition: background 300ms ease-in-out;
 }
 
 @keyframes visible {
-		0% {
-		opacity: 0;
-		pointer-events: none;
-		visibility: hidden;
-		}
-		
-		100% {
-				opacity: 1;
-				pointer-events: auto;
-				visibility: visible;
-		}
+  0% {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  100% {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
 }
 
 .item-container:hover {
-		background: rgba(200,200,200,0.2);
-		border-radius: 7px;
+  background: rgba(200, 200, 200, 0.2);
+  border-radius: 7px;
 }
 
 /*removes the default padding, margin around para*/
-.item-container > p {
-		padding: 0;
-		margin: 0;
-		font-size: clamp(0.8rem ,3vw, 1.3rem);
+.item-container>p {
+  padding: 0;
+  margin: 0;
+  font-size: clamp(0.8rem, 3vw, 1.3rem);
 }
 
 .buttons {
-		display: flex;
-		align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-.buttons > button {
-		background: none;
-		border: none;
+.buttons>button {
+  background: none;
+  border: none;
 }
 
-button[data-trash-btn] > i {
-		color: red;
-		transition: all 300ms ease-in-out;
+button[data-trash-btn]>i {
+  color: red;
+  transition: all 300ms ease-in-out;
 }
 
-button[data-edit-btn] > i {
-		color: #92d47c;
-		transition: all 300ms ease-in-out;
+button[data-edit-btn]>i {
+  color: #92d47c;
+  transition: all 300ms ease-in-out;
 }
 
-button[data-trash-btn] > i:hover,
-button[data-trash-btn] > i:focus,
-button[data-edit-btn] > i:hover,
-button[data-edit-btn] > i:focus {
-		transform: scale(1.1);
+button[data-trash-btn]>i:hover,
+button[data-trash-btn]>i:focus,
+button[data-edit-btn]>i:hover,
+button[data-edit-btn]>i:focus {
+  transform: scale(1.1);
 }
 
 button[data-clear-btn] {
-		margin-top: 3rem;
-		border: none;
-		background: none;
-		font-size: clamp(0.9rem, 3vw, 1.6rem);
-		color: red;
-		text-transform: uppercase;
-		letter-spacing: 1.5px;
-		transition: font-weight 200ms ease-in,
-												opacity 300ms ease-in-out,
-												visibility 300ms ease-in-out;
-		pointer-events: none;
-		visibility: hidden;
-		opacity: 0;
+  margin-top: 3rem;
+  border: none;
+  background: none;
+  font-size: clamp(0.9rem, 3vw, 1.6rem);
+  color: red;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: font-weight 200ms ease-in,
+    opacity 300ms ease-in-out,
+    visibility 300ms ease-in-out;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
 }
 
 button[data-clear-btn].added {
-		pointer-events: auto;
-		visibility: visible;
-		opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
 }
 
 button[data-clear-btn]:hover,
 button[data-clear-btn]:focus {
-		font-weight: bold;
+  font-weight: bold;
 }
 
 
-@media(max-width: 320px){
-		
-.add-item-btn {	
-		font-size: 0.7rem;
-		white-space: nowrap;
+@media(max-width: 320px) {
+
+  .add-item-btn {
+    font-size: 0.7rem;
+    white-space: nowrap;
+  }
+
+  .grocery-input {
+    font-size: clamp(0.7rem, 3vw, 1.3rem);
+    width: 60%;
+  }
 }
 
-.grocery-input {
-		font-size: clamp(0.7rem, 3vw, 1.3rem);
-		width: 60%;
-}
-}
+@media(min-width: 1024px) {
+  section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
 
-@media(min-width: 1024px){
-		section {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		grid-template-rows: 1fr;
+  }
 
-		}
-		
-		.grocery-form {
-			margin: 0;
-			position: relative;
-		}
-		
-		.action-message {
-				width: 90%;
-		}
-		
-	 .grocery-form::before {
-		content: "";
-		width: 2px;
-		height: 90%;
-		background: lightgray;
-		position: absolute;
-		right: 0;
-		margin: 0 1rem;
-		}
+  .grocery-form {
+    margin: 0;
+    position: relative;
+  }
+
+  .action-message {
+    width: 90%;
+  }
+
+  .grocery-form::before {
+    content: "";
+    width: 2px;
+    height: 90%;
+    background: lightgray;
+    position: absolute;
+    right: 0;
+    margin: 0 1rem;
+  }
 }
